@@ -100,7 +100,7 @@ class ChunkSummary(BaseModel):
 
 class LLMCallRecord(BaseModel):
     call_id: str
-    stage: Literal["judge", "grounding", "causal_synthesis"]
+    stage: Literal["judge", "grounding", "variant_grounding", "causal_synthesis"]
     chunk_index: int = -1
     risk_ids: list[str]
     messages: list[dict]
