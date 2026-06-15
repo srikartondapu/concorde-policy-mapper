@@ -100,7 +100,7 @@ class ChunkSummary(BaseModel):
 
 class LLMCallRecord(BaseModel):
     call_id: str
-    stage: Literal["judge", "grounding", "variant_grounding", "causal_synthesis"]
+    stage: Literal["judge", "grounding", "variant_grounding", "causal_synthesis", "query_gen"]
     chunk_index: int = -1
     risk_ids: list[str]
     messages: list[dict]
@@ -188,6 +188,7 @@ class RetrievalConfig:
     grounding_passes: int = 3
     expansion_passes: int = 3
     no_causal_synthesis: bool = False
+    query_gen: bool = True
 
     @property
     def effective_cross_encoder_model(self) -> str | None:
@@ -222,4 +223,5 @@ class RetrievalConfig:
             "grounding_passes": self.grounding_passes,
             "expansion_passes": self.expansion_passes,
             "no_causal_synthesis": self.no_causal_synthesis,
+            "query_gen": self.query_gen,
         }
